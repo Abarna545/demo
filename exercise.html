@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Simple Website</title>
+  <meta name="description" content="A clean, responsive single-file HTML website." />
+  <style>
+    :root{--accent:#2563eb;--muted:#6b7280;--bg:#0f172a}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;line-height:1.5;margin:0;color:#0b1220;background:#f8fafc}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo .mark{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-block}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:6px}
+    nav a:hover{color:#111827;background:rgba(0,0,0,0.03)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:28px 0}
+    .hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+
+    /* Card list */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:white;border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(12,20,30,0.06)}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Form */
+    .contact{background:#ffffff;border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(12,20,30,0.06)}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-size:13px;color:#111827;margin-bottom:6px}
+    input[type="text"],input[type="email"],textarea{padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+    .muted{color:var(--muted);font-size:13px}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      nav{display:none}
+      .mobile-nav-toggle{display:inline-block}
+    }
+    .mobile-nav-toggle{display:none;border:0;background:transparent;font-size:18px}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <span class="mark" aria-hidden></span>
+        <span>Acme</span>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Simple, fast, and beautiful websites — ready to ship</h1>
+          <p>One-file starter template with a clean layout, responsive design, and a tiny amount of JavaScript. Perfect for portfolios, landing pages, or quick demos.</p>
+          <p><a class="btn" href="#contact">Get started — it's free</a></p>
+
+          <div class="features" id="features">
+            <div class="card">
+              <h3>Responsive</h3>
+              <p>Looks great on phones, tablets and desktops without extra work.</p>
+            </div>
+            <div class="card">
+              <h3>Lightweight</h3>
+              <p>Minimal CSS and no dependencies — fast load times.</p>
+            </div>
+            <div class="card">
+              <h3>Accessible</h3>
+              <p>Semantic HTML and clear contrast to help all users.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="contact" id="contact">
+            <h2 style="margin-top:0">Contact us</h2>
+            <p class="muted">Send a message and we'll reply within 1–2 business days.</p>
+            <form id="contactForm" onsubmit="return handleSubmit(event)">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required placeholder="Your name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us about your project"></textarea>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;justify-content:flex-end">
+                <button type="submit" class="btn">Send message</button>
+              </div>
+            </form>
+            <p id="result" class="muted" style="margin-top:10px"></p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="pricing" style="margin-top:28px">
+        <h2 style="margin-bottom:10px">Pricing</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px">
+          <div class="card"><h3>Free</h3><p class="muted">Basic starter — perfect for personal projects.</p></div>
+          <div class="card"><h3>Pro</h3><p class="muted">Extra features, custom domain support, and priority support.</p></div>
+          <div class="card"><h3>Enterprise</h3><p class="muted">SLA, team seats, and advanced integrations.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> Acme — Built with ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    // small utilities: mobile nav toggle + form demo
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toggle = document.querySelector('.mobile-nav-toggle');
+    let navClone;
+    toggle && toggle.addEventListener('click', ()=>{
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      if(!navClone){
+        const nav = document.querySelector('nav');
+        navClone = nav.cloneNode(true);
+        navClone.style.display = 'flex';
+        navClone.style.flexDirection = 'column';
+        navClone.style.gap = '8px';
+        navClone.style.padding = '12px 0';
+        navClone.id = 'mobile-menu';
+        document.querySelector('header').appendChild(navClone);
+      } else {
+        navClone.classList.toggle('hidden');
+      }
+    });
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const result = document.getElementById('result');
+      if(!name || !email || !message){ result.textContent = 'Please fill all fields.'; return false; }
+      // Demo behaviour: show a success message. Replace this with real API code.
+      result.textContent = 'Thanks, ' + name + '! Your message was sent (demo).';
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
